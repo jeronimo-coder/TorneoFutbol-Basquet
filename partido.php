@@ -74,7 +74,29 @@ class Partido{
         "Goles del equipo 1: {$this->getCantGolesE1()}\n".
         "Goles del equipo 2: {$this->getCantGolesE2()}\n".
         "Equipo 1: {$this->getObjEquipo1()}\n".
-        "Equpo 2: {$this->getObjEquipo2()}\n";
+        "Equipo 2: {$this->getObjEquipo2()}\n";
         return $info;
     }
+
+    public function coeficientePartido(){
+        $arrayCoef = []; 
+        $coef1 = 0.5 * $this->getCantGolesE1() * $this->getObjEquipo1()->getCantJugadores();
+        $coef2 = 0.5 * $this->getCantGolesE2() * $this->getObjEquipo2()->getCantJugadores();
+        $coefTotal = $coef1 + $coef2;
+        $arrayCoef = [$coef1,$coef2, $coefTotal];
+        return $arrayCoef;
+    }
+
+    public function darGanador(){
+        $ganador = null;
+        if($this->getCantGolesE1() > $this->getCantGolesE2()){
+            $ganador["equipo"] = $this->getObjEquipo1();
+            $ganador["goles"] = $this->getCantGolesE1();
+        }elseif($this->getCantGolesE2() > $this->getCantGolesE1()){
+            $ganador["equipo"] = $this->getObjEquipo2();
+            $ganador["goles"] = $this->getCantGolesE2();
+        }
+        return $ganador;
+    }
+
 }

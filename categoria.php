@@ -33,4 +33,18 @@ class Categoria{
         "Descripción: {$this->getDescripcion()}\n";
         return $info;
     }
+
+    public function getCoefCategoria(){
+        $coef = 0.0;
+        if($this->getDescripcion() == "Menores"){
+            $coef = 0.11;
+        }
+        if($this->getDescripcion() == "Juveniles"){
+            $coef = 0.17;
+        }
+        if($this->getDescripcion() == "Mayores"){
+            $coef = 0.23;
+        }
+        return $coef;
+    }
 }
