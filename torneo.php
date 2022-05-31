@@ -2,15 +2,25 @@
 
 class Torneo
 {
+    private $idTorneo;
     private $colPartidos;
     private $importePremio;
     private $nombreLocalidad;
 
-    public function __construct($colPartidos, $importe, $localidad)
+    public function __construct($id, $colPartidos, $importe, $localidad)
     {
+        $this->idTorneo = $id;
         $this->colPartidos = $colPartidos;
         $this->importePremio = $importe;
         $this->nombreLocalidad = $localidad;
+    }
+
+    public function getIdTorneo(){
+        return $this->idTorneo;
+    }
+
+    public function setIdTorneo($idTorneo){
+        $this->idTorneo = $idTorneo;
     }
 
     public function getColPartidos()
@@ -55,7 +65,8 @@ class Torneo
     public function __toString()
     {
         $partidos = $this->infoPartidos();
-        $info = "Partidos: $partidos \n" .
+        $info ="Id torneo: {$this->getIdTorneo()}\n" . 
+            "Partidos: $partidos \n" .
             "Premio: {$this->getImportePremio()}\n" .
             "Se jugó en: {$this->getNombreLocalidad()}";
         return $info;
@@ -177,10 +188,10 @@ class Torneo
         $d = count($ganadoresPartidos);
         $ganados = 1;
         $gol = 0;
-        for($i = 0; $i < $d; $i++){   
+        for ($i = 0; $i < $d; $i++) {
             $ganadosXequipo = $ganadoresPartidos[$i]["ganados"];
             $golesXequipo = $ganadoresPartidos[$i]["goles"];
-            if($ganadosXequipo > $ganados && $golesXequipo > $gol){
+            if ($ganadosXequipo > $ganados && $golesXequipo > $gol) {
                 $ganados = $ganadosXequipo;
                 $gol = $golesXequipo;
                 $ganadorTorneo = $ganadoresPartidos[$i];
@@ -188,4 +199,14 @@ class Torneo
         }
         return $ganadorTorneo;
     }
+
+    /** Se calcula el premio del torneo */
+
+    public function obtenerPremioTorneo(){
+        $premio = $this->getImportePremio();
+        $ganadorTorneo = $this->obtenerEquipoGanadorTorneo();
+        $arrayPremio = [$premio, $ganadorTorneo];
+        return $arrayPremio;
+    }
+  
 }

@@ -4,9 +4,9 @@ include_once('torneo.php');
 class Provincial extends Torneo
 {
     private $nombreProvincia;
-    public function __construct($colPartidos, $importe, $localidad, $provincia)
+    public function __construct($id, $colPartidos, $importe, $localidad, $provincia)
     {
-        parent::__construct($colPartidos, $importe, $localidad);
+        parent::__construct($id, $colPartidos, $importe, $localidad);
         $this->nombreProvincia = $provincia;
     }
 
@@ -21,7 +21,7 @@ class Provincial extends Torneo
     public function __toString()
     {
         $info = parent::__toString();
-        $info .= "Provincia de: {$this->getNombreProvincia()}\n";
+        $info .= "\nProvincia de: {$this->getNombreProvincia()}\n";
         return $info;
     }
 }
