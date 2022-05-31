@@ -1,4 +1,5 @@
 <?php
+include_once('torneo.php');
 
 class Nacional extends Torneo
 {

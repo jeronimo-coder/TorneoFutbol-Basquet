@@ -1,4 +1,5 @@
 <?php
+include_once('partido.php');
 
 class Basquet extends Partido{
     private $infracciones;

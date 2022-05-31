@@ -1,5 +1,7 @@
 <?php
 
+include_once('partido.php');
+
 class Futbol extends Partido{
 
     public function __construct($id, $fecha, $cantGoles1, $cantGoles2, $equipo1, $equipo2)
